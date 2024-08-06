@@ -14,7 +14,7 @@ class Gotify(_PluginBase):
     # 插件图标
     plugin_icon = "https://p.aiu.pub/s/5cL4Wz03.webp"
     # 插件版本
-    plugin_version = "1.5"
+    plugin_version = "1.5.1"
     # 插件作者
     plugin_author = "wind"
     # 作者主页
@@ -173,6 +173,7 @@ class Gotify(_PluginBase):
             ret = RequestUtils().get_res(self._webhook_url, params=event_info)
         if ret:
             logger.info("发送成功：%s" % self._webhook_url)
+            logger.info("消息记录：%s" % str(dict_data))
         elif ret is not None:
             logger.error(f"发送失败，状态码：{ret.status_code}，返回信息：{ret.text} {ret.reason}")
         else:
