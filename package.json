@@ -2,7 +2,7 @@
     "Gotify": {
         "name": "Gotify",
         "description": "事件发生时向gotify址发送请求。",
-        "version": "1.5.2",
+        "version": "1.5.3",
         "icon": "https://p.aiu.pub/s/5cL4Wz03.webp",
         "author": "wind",
         "level": 1

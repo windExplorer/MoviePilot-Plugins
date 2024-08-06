@@ -14,7 +14,7 @@ class Gotify(_PluginBase):
     # 插件图标
     plugin_icon = "https://p.aiu.pub/s/5cL4Wz03.webp"
     # 插件版本
-    plugin_version = "1.5.2"
+    plugin_version = "1.5.3"
     # 插件作者
     plugin_author = "wind"
     # 作者主页
@@ -161,15 +161,16 @@ class Gotify(_PluginBase):
 
         dict_data = __to_dict(event.event_data)
         data_title = dict_data.get('title', '-')
-        data_message = dict_data.get('text', data_title)
+        data_message = dict_data.get('text')
         event_info = {
             "title": "MoviePilot" + data_title,
             "message": data_message,
         }
 
-        if data_message == '-':
-            logger.info("发送失败：没有获取到消息内容"  )
-            logger.info("消息记录：%s" % str(dict_data))
+        # 如果没有获取到正文，就不发送消息，避免垃圾消息太多
+        if not data_message:
+            logger.info("发送失败：没有获取到正文消息"  )
+            logger.info("dict消息记录：%s" % str(dict_data))
             logger.info("data消息记录：%s" % str(event.event_data))
         else:
             if self._method == 'POST':
@@ -178,7 +179,7 @@ class Gotify(_PluginBase):
                 ret = RequestUtils().get_res(self._webhook_url, params=event_info)
             if ret:
                 logger.info("发送成功：%s" % self._webhook_url)
-                logger.info("消息记录：%s" % str(dict_data))
+                # logger.info("dict消息记录：%s" % str(dict_data))
                 logger.info("data消息记录：%s" % str(event.event_data))
             elif ret is not None:
                 logger.error(f"发送失败，状态码：{ret.status_code}，返回信息：{ret.text} {ret.reason}")
