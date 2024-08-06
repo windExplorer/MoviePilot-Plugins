@@ -14,7 +14,7 @@ class Gotify(_PluginBase):
     # 插件图标
     plugin_icon = "https://p.aiu.pub/s/5cL4Wz03.webp"
     # 插件版本
-    plugin_version = "1.5.1"
+    plugin_version = "1.5.2"
     # 插件作者
     plugin_author = "wind"
     # 作者主页
@@ -167,17 +167,23 @@ class Gotify(_PluginBase):
             "message": data_message,
         }
 
-        if self._method == 'POST':
-            ret = RequestUtils(content_type="application/json").post_res(self._webhook_url, json=event_info)
-        else:
-            ret = RequestUtils().get_res(self._webhook_url, params=event_info)
-        if ret:
-            logger.info("发送成功：%s" % self._webhook_url)
+        if data_message == '-':
+            logger.info("发送失败：没有获取到消息内容"  )
             logger.info("消息记录：%s" % str(dict_data))
-        elif ret is not None:
-            logger.error(f"发送失败，状态码：{ret.status_code}，返回信息：{ret.text} {ret.reason}")
+            logger.info("data消息记录：%s" % str(event.event_data))
         else:
-            logger.error("发送失败，未获取到返回信息")
+            if self._method == 'POST':
+                ret = RequestUtils(content_type="application/json").post_res(self._webhook_url, json=event_info)
+            else:
+                ret = RequestUtils().get_res(self._webhook_url, params=event_info)
+            if ret:
+                logger.info("发送成功：%s" % self._webhook_url)
+                logger.info("消息记录：%s" % str(dict_data))
+                logger.info("data消息记录：%s" % str(event.event_data))
+            elif ret is not None:
+                logger.error(f"发送失败，状态码：{ret.status_code}，返回信息：{ret.text} {ret.reason}")
+            else:
+                logger.error("发送失败，未获取到返回信息")
 
     def stop_service(self):
         """
