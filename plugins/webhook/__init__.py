@@ -8,19 +8,19 @@ from app.log import logger
 
 class WebHook(_PluginBase):
     # 插件名称
-    plugin_name = "Webhook"
+    plugin_name = "Webhook_Gotify"
     # 插件描述
-    plugin_desc = "事件发生时向第三方地址发送请求。"
+    plugin_desc = "事件发生时向Gotify发送请求。"
     # 插件图标
     plugin_icon = "webhook.png"
     # 插件版本
     plugin_version = "1.0"
     # 插件作者
-    plugin_author = "jxxghp"
+    plugin_author = "wind"
     # 作者主页
-    author_url = "https://github.com/jxxghp"
+    author_url = "https://github.com/windExplorer"
     # 插件配置项ID前缀
-    plugin_config_prefix = "webhook_"
+    plugin_config_prefix = "webhook_gotify_"
     # 加载顺序
     plugin_order = 14
     # 可使用的用户级别
@@ -161,7 +161,8 @@ class WebHook(_PluginBase):
 
         event_info = {
             "type": event.event_type,
-            "data": __to_dict(event.event_data)
+            "data": __to_dict(event.event_data),
+            "message": __to_dict(event.event_data), # gotify
         }
 
         if self._method == 'POST':
