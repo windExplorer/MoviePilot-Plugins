@@ -6,21 +6,21 @@ from typing import Any, List, Dict, Tuple
 from app.log import logger
 
 
-class WebHookGotify(_PluginBase):
+class Gotify(_PluginBase):
     # 插件名称
-    plugin_name = "WebHookGotify"
+    plugin_name = "Gotify"
     # 插件描述
     plugin_desc = "事件发生时向Gotify发送请求。"
     # 插件图标
-    plugin_icon = "webhook.png"
+    plugin_icon = "https://p.aiu.pub/s/5cL4Wz03.webp"
     # 插件版本
-    plugin_version = "1.3"
+    plugin_version = "1.0"
     # 插件作者
     plugin_author = "wind"
     # 作者主页
     author_url = "https://github.com/windExplorer"
     # 插件配置项ID前缀
-    plugin_config_prefix = "webhook_gotify_"
+    plugin_config_prefix = "gotify_"
     # 加载顺序
     plugin_order = 14
     # 可使用的用户级别
@@ -159,10 +159,10 @@ class WebHookGotify(_PluginBase):
             else:
                 return str(_event)
 
+        dict_data = __to_dict(event.event_data)
         event_info = {
-            "type": event.event_type,
-            "data": __to_dict(event.event_data),
-            "message": "test-ok",
+            "title": "MoviePilot" + dict_data.title,
+            "message": dict_data.text,
         }
 
         if self._method == 'POST':
@@ -171,8 +171,6 @@ class WebHookGotify(_PluginBase):
             ret = RequestUtils().get_res(self._webhook_url, params=event_info)
         if ret:
             logger.info("发送成功：%s" % self._webhook_url)
-            logger.info("event消息：%s" % str(event))
-            logger.info("dict消息：%s" % str(__to_dict(event.event_data)))
         elif ret is not None:
             logger.error(f"发送失败，状态码：{ret.status_code}，返回信息：{ret.text} {ret.reason}")
         else:

@@ -1,9 +1,9 @@
 {
     "WebHookGotify": {
-        "name": "WebHookGotify",
+        "name": "Gotify",
         "description": "事件发生时向gotify址发送请求。",
-        "version": "1.3",
-        "icon": "webhook.png",
+        "version": "1.0",
+        "icon": "https://p.aiu.pub/s/5cL4Wz03.webp",
         "author": "wind",
         "level": 1
     }
