@@ -14,7 +14,7 @@ class WebHookGotify(_PluginBase):
     # 插件图标
     plugin_icon = "webhook.png"
     # 插件版本
-    plugin_version = "1.2"
+    plugin_version = "1.3"
     # 插件作者
     plugin_author = "wind"
     # 作者主页
@@ -171,6 +171,8 @@ class WebHookGotify(_PluginBase):
             ret = RequestUtils().get_res(self._webhook_url, params=event_info)
         if ret:
             logger.info("发送成功：%s" % self._webhook_url)
+            logger.info("event消息：%s" % str(event))
+            logger.info("dict消息：%s" % str(__to_dict(event.event_data)))
         elif ret is not None:
             logger.error(f"发送失败，状态码：{ret.status_code}，返回信息：{ret.text} {ret.reason}")
         else:
