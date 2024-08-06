@@ -1,5 +1,5 @@
 {
-    "WebHookGotify": {
+    "Gotify": {
         "name": "Gotify",
         "description": "事件发生时向gotify址发送请求。",
         "version": "1.5",
