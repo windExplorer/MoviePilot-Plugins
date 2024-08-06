@@ -6,9 +6,9 @@ from typing import Any, List, Dict, Tuple
 from app.log import logger
 
 
-class WebHook(_PluginBase):
+class WebHookGotify(_PluginBase):
     # 插件名称
-    plugin_name = "Webhook_Gotify"
+    plugin_name = "WebhookGotify"
     # 插件描述
     plugin_desc = "事件发生时向Gotify发送请求。"
     # 插件图标

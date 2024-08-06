@@ -1,6 +1,6 @@
 {
-    "WebHook": {
-        "name": "Webhook-gotify",
+    "WebHookGotify": {
+        "name": "WebhookGotify",
         "description": "事件发生时向gotify址发送请求。",
         "version": "1.0",
         "icon": "webhook.png",
