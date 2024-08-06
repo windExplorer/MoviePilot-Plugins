@@ -160,9 +160,11 @@ class Gotify(_PluginBase):
                 return str(_event)
 
         dict_data = __to_dict(event.event_data)
+        data_title = dict_data.get('title', '-')
+        data_message = dict_data.get('text', data_title)
         event_info = {
-            "title": "MoviePilot" + dict_data.title,
-            "message": dict_data.text,
+            "title": "MoviePilot" + data_title,
+            "message": data_message,
         }
 
         if self._method == 'POST':
