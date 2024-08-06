@@ -8,7 +8,7 @@ from app.log import logger
 
 class WebHookGotify(_PluginBase):
     # 插件名称
-    plugin_name = "WebhookGotify"
+    plugin_name = "WebHookGotify"
     # 插件描述
     plugin_desc = "事件发生时向Gotify发送请求。"
     # 插件图标
