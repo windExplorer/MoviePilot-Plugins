@@ -14,7 +14,7 @@ class Gotify(_PluginBase):
     # 插件图标
     plugin_icon = "https://p.aiu.pub/s/5cL4Wz03.webp"
     # 插件版本
-    plugin_version = "1.0"
+    plugin_version = "1.5"
     # 插件作者
     plugin_author = "wind"
     # 作者主页
