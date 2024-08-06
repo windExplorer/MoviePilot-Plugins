@@ -14,7 +14,7 @@ class WebHookGotify(_PluginBase):
     # 插件图标
     plugin_icon = "webhook.png"
     # 插件版本
-    plugin_version = "1.1"
+    plugin_version = "1.2"
     # 插件作者
     plugin_author = "wind"
     # 作者主页
@@ -162,7 +162,7 @@ class WebHookGotify(_PluginBase):
         event_info = {
             "type": event.event_type,
             "data": __to_dict(event.event_data),
-            "message": 'test-ok', # gotify
+            "message": "test-ok",
         }
 
         if self._method == 'POST':

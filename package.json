@@ -2,7 +2,7 @@
     "WebHookGotify": {
         "name": "WebHookGotify",
         "description": "事件发生时向gotify址发送请求。",
-        "version": "1.1",
+        "version": "1.2",
         "icon": "webhook.png",
         "author": "wind",
         "level": 1
