@@ -14,7 +14,7 @@ class Gotify(_PluginBase):
     # 插件图标
     plugin_icon = "https://p.aiu.pub/s/5cL4Wz03.webp"
     # 插件版本
-    plugin_version = "1.5.3"
+    plugin_version = "1.5.4"
     # 插件作者
     plugin_author = "wind"
     # 作者主页
@@ -163,14 +163,14 @@ class Gotify(_PluginBase):
         data_title = dict_data.get('title', '-')
         data_message = dict_data.get('text')
         event_info = {
-            "title": "MoviePilot" + data_title,
+            "title": "MoviePilot：" + data_title,
             "message": data_message,
         }
 
         # 如果没有获取到正文，就不发送消息，避免垃圾消息太多
         if not data_message:
             logger.info("发送失败：没有获取到正文消息"  )
-            logger.info("dict消息记录：%s" % str(dict_data))
+            # logger.info("dict消息记录：%s" % str(dict_data))
             logger.info("data消息记录：%s" % str(event.event_data))
         else:
             if self._method == 'POST':

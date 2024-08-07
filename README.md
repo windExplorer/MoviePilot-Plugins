@@ -5,6 +5,13 @@
 请求类型: `post`
 链接: `http://xxxx:xxx/message?token=xxxx`
 
+## 版本记录
+
+#### 1.5.4 - 202408007:1510
+
+1. 修改标题格式
+2. 日志去掉`dict`，保留`data`
+
 ---
 
 # MoviePilot-Plugins
