@@ -14,7 +14,7 @@ class Gotify(_PluginBase):
     # 插件图标
     plugin_icon = "https://p.aiu.pub/s/5cL4Wz03.webp"
     # 插件版本
-    plugin_version = "2.0.0"
+    plugin_version = "2.0.1"
     # 插件作者
     plugin_author = "wind"
     # 作者主页
@@ -30,12 +30,15 @@ class Gotify(_PluginBase):
     _webhook_url = None
     _method = None
     _enabled = False
+    # 标题前缀
+    _gotify_title = "MoviePilot-V2："
 
     def init_plugin(self, config: dict = None):
         if config:
             self._enabled = config.get("enabled")
             self._webhook_url = config.get("webhook_url")
             self._method = config.get('request_method')
+            self._gotify_title = config.get('gotify_title')
 
     def get_state(self) -> bool:
         return self._enabled
@@ -74,6 +77,22 @@ class Gotify(_PluginBase):
                                         }
                                     }
                                 ]
+                            },
+                            {
+                                'component': 'VCol',
+                                'props': {
+                                    'cols': 12,
+                                    'md': 6
+                                },
+                                'content': [
+                                    {
+                                        'component': 'VTextField',
+                                        'props': {
+                                            'model': 'gotify_title',
+                                            'label': '标题前缀',
+                                        }
+                                    }
+                                ]
                             }
                         ]
                     },
@@ -108,7 +127,7 @@ class Gotify(_PluginBase):
                                         'component': 'VTextField',
                                         'props': {
                                             'model': 'webhook_url',
-                                            'label': 'webhook地址'
+                                            'label': 'Gotify地址'
                                         }
                                     }
                                 ]
@@ -163,7 +182,7 @@ class Gotify(_PluginBase):
         data_title = dict_data.get('title', '-')
         data_message = dict_data.get('text')
         event_info = {
-            "title": "MoviePilot：" + data_title,
+            "title": self._gotify_title + data_title,
             "message": data_message,
         }
 

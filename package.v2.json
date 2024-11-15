@@ -2,9 +2,13 @@
     "Gotify": {
         "name": "Gotify",
         "description": "事件发生时向gotify址发送请求。",
-        "version": "2.0.0",
+        "version": "2.0.1",
         "icon": "https://p.aiu.pub/s/5cL4Wz03.webp",
         "author": "wind",
-        "level": 1
+        "level": 1,
+        "history": {
+            "v2.0.1": "支持配置标头",
+            "v2.0.0": "适配MoviePilot V2版本"
+        }
     }
 }
